@@ -12,7 +12,7 @@ function Navbar() {
               <Trees className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-green-700">EcoRise</h1>
+              <h1 className="text-xl font-bold text-green-700">DHARA 🦢</h1>
               <span className="text-sm">🌱</span>
             </div>
           </div>
