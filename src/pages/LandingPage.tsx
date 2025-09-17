@@ -33,7 +33,7 @@ function LandingPage({ onStartJourney }: LandingPageProps) {
               <Trees className="h-12 w-12 text-white" />
             </div>
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-2">
-              EcoRise
+              DHARA 🦢
             </h1>
             <div className="text-2xl">🌱</div>
           </div>
