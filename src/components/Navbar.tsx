@@ -32,7 +32,7 @@ function Navbar() {
                 <User className="h-6 w-6 text-white" />
               </div>
               <div className="hidden md:block">
-                <p className="text-sm font-medium text-gray-700">Sarah Green</p>
+                <p className="text-sm font-medium text-gray-700">Sarah Green 🍃</p>
                 <p className="text-xs text-gray-500">Level 7 Eco-Warrior</p>
               </div>
             </div>
