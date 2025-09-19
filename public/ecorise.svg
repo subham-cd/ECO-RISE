@@ -1,0 +1,62 @@
+<!-- Save as: ecorise-eco-icon.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">EcoRise - Leaf &amp; Globe</title>
+  <desc id="desc">A circular earth with a growing leaf and sun — environment / sustainability icon.</desc>
+
+  <!-- background circle (earth) -->
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#79d7a3"></stop>
+      <stop offset="1" stop-color="#2fa46a"></stop>
+    </linearGradient>
+    <linearGradient id="g2" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#8fd3ff"></stop>
+      <stop offset="1" stop-color="#4aa6e6"></stop>
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#000" flood-opacity="0.12"></feDropShadow>
+    </filter>
+  </defs>
+
+  <!-- subtle shadow -->
+  <circle cx="128" cy="120" r="84" fill="rgba(0,0,0,0.04)" transform="translate(0,6)"></circle>
+
+  <!-- earth circle -->
+  <g filter="url(#shadow)">
+    <circle cx="128" cy="112" r="84" fill="url(#g2)"></circle>
+    <!-- land shapes -->
+    <path d="M88 84c18-12 36-8 52 2 18 12 24 34 14 46-10 12-34 10-52-2-18-12-34-30-14-46z" fill="url(#g1)"></path>
+    <path d="M70 140c10 6 30 8 46 4 16-4 34-14 38-28 4-14-8-28-20-30" fill="url(#g1)" opacity="0.95"></path>
+  </g>
+
+  <!-- leaf growing from earth -->
+  <g transform="translate(128,40)">
+    <g transform="translate(-8,30) rotate(-12)">
+      <path d="M8 0 C30 10 44 34 30 60 C16 86 -8 86 -18 60 C-28 34 -8 12 8 0 Z" fill="#1f8f4a"></path>
+      <path d="M6 6 C22 16 34 36 26 58 C18 80 0 80 -8 58 C-16 36 -6 18 6 6 Z" fill="#3bbf6f" opacity="0.9"></path>
+      <!-- leaf vein -->
+      <path d="M0 8 C6 24 12 36 18 52" stroke="#0a5f2b" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.9"></path>
+      <!-- stem -->
+      <path d="M0 58 L4 78" stroke="#6b8b3a" stroke-width="4" stroke-linecap="round"></path>
+    </g>
+  </g>
+
+  <!-- small sun in top-right -->
+  <g transform="translate(186,46)">
+    <circle cx="0" cy="0" r="12" fill="#ffd166"></circle>
+    <g stroke="#ffd166" stroke-width="2" stroke-linecap="round" transform="rotate(15)">
+      <line x1="-20" y1="0" x2="-12" y2="0"></line>
+      <line x1="12" y1="0" x2="20" y2="0"></line>
+      <line x1="0" y1="-20" x2="0" y2="-12"></line>
+      <line x1="0" y1="12" x2="0" y2="20"></line>
+      <line x1="-14" y1="-14" x2="-8" y2="-8"></line>
+      <line x1="8" y1="8" x2="14" y2="14"></line>
+      <line x1="-14" y1="14" x2="-8" y2="8"></line>
+      <line x1="8" y1="-8" x2="14" y2="-14"></line>
+    </g>
+  </g>
+
+  <!-- outline ring -->
+  <circle cx="128" cy="112" r="84" fill="none" stroke="#0d8b5a" stroke-width="3" opacity="0.12"></circle>
+
+</svg>
