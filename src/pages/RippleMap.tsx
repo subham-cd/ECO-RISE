@@ -1,8 +1,62 @@
 import React, { useState } from 'react';
 import { MapPin, TrendingUp, Users, TreePine, Droplets } from 'lucide-react';
+import TaskSubmission from '../components/TaskSubmission';
+import TaskCard from '../components/TaskCard';
+import CampusIntelligence from '../components/CampusIntelligence';
+
+interface Task {
+  id: string;
+  description: string;
+  category: string;
+  imageUrl: string;
+  aiAnalysisResult: {
+    issueType: string;
+    severity: string;
+    confidence: number;
+  };
+  status: 'pending' | 'approved' | 'rejected' | 'resolved';
+  timestamp: string;
+}
 
 function RippleMap() {
   const [selectedZone, setSelectedZone] = useState<string | null>(null);
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const isAdmin = true;
+
+  const handleTaskSubmit = (newTask: Task) => {
+    setTasks([newTask, ...tasks]);
+  };
+
+  const handleStatusChange = (taskId: string, newStatus: string) => {
+    setTasks(tasks.map(task =>
+      task.id === taskId ? { ...task, status: newStatus as Task['status'] } : task
+    ));
+
+    if (newStatus === 'approved') {
+      updateUserScore(100);
+    }
+  };
+
+  const updateUserScore = async (points: number) => {
+    // TODO: Implement scoring logic on backend
+    try {
+      const response = await fetch('/api/users/update-score', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ points })
+      });
+
+      if (!response.ok) {
+        throw new Error('Score update failed');
+      }
+
+      console.log(`User score updated! +${points} eco-karma points`);
+    } catch (error) {
+      console.error('Score update error:', error);
+    }
+  };
 
   const zones = [
     {
@@ -96,6 +150,19 @@ function RippleMap() {
       case 'Medium': return 'w-5 h-5';
       case 'Low': return 'w-4 h-4';
       default: return 'w-4 h-4';
+    }
+  };
+
+  const getSeverityColor = (severity: string) => {
+    switch (severity) {
+      case 'High':
+        return 'bg-red-500 shadow-red-300';
+      case 'Medium':
+        return 'bg-yellow-500 shadow-yellow-300';
+      case 'Low':
+        return 'bg-green-500 shadow-green-300';
+      default:
+        return 'bg-gray-400';
     }
   };
 
@@ -245,6 +312,51 @@ function RippleMap() {
           <p className="text-gray-600">Trees Planted</p>
         </div>
       </div>
+
+      {/* Campus Intelligence Dashboard */}
+      <CampusIntelligence />
+
+      {/* Task Submission Section */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <TaskSubmission onSubmit={handleTaskSubmit} />
+
+        <div className="space-y-4">
+          <h3 className="text-2xl font-bold text-green-700">Recent Submissions</h3>
+          {tasks.length === 0 ? (
+            <div className="bg-white rounded-2xl p-8 text-center shadow-lg">
+              <p className="text-gray-500">No tasks submitted yet. Be the first to contribute!</p>
+            </div>
+          ) : (
+            <div className="space-y-4 max-h-96 overflow-y-auto">
+              {tasks.slice(0, 3).map((task) => (
+                <TaskCard
+                  key={task.id}
+                  task={task}
+                  isAdmin={isAdmin}
+                  onStatusChange={handleStatusChange}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* All Submitted Tasks */}
+      {tasks.length > 3 && (
+        <div className="space-y-4">
+          <h3 className="text-2xl font-bold text-green-700">All Campus Actions</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {tasks.slice(3).map((task) => (
+              <TaskCard
+                key={task.id}
+                task={task}
+                isAdmin={isAdmin}
+                onStatusChange={handleStatusChange}
+              />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
